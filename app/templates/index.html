@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>我的食譜收藏</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
+        .recipe-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        h1 { color: #333; }
+        .btn { background: #28a745; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🍳 我的食譜收藏</h1>
+    <a href="/recipes/new" class="btn">＋ 新增私藏食譜</a>
+    <hr>
+    
+    {% if recipes %}
+        {% for r in recipes %}
+            <div class="recipe-card">
+                <h3>{{ r.title }}</h3>
+                <p><strong>🧂 食材：</strong><br>{{ r.ingredients }}</p>
+                <p><strong>📖 步驟：</strong><br>{{ r.instructions }}</p>
+                <small>建立時間：{{ r.created_at.strftime('%Y-%m-%d') }}</small>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>目前還沒有食譜，快去新增一個吧！</p>
+    {% endif %}
+</body>
+</html>
